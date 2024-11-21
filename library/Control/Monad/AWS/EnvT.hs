@@ -32,6 +32,7 @@ import Control.Monad.AWS.Class
 import Control.Monad.AWS.ViaReader
 import Control.Monad.Reader
 import Control.Monad.Trans.Resource
+import Control.Monad.Error.Class (MonadError)
 
 -- |
 --
@@ -47,6 +48,7 @@ newtype EnvT m a = EnvT
     , MonadUnliftIO
     , MonadResource
     , MonadReader Env
+    , MonadError e
     )
   deriving (MonadAWS) via (ReaderAWS (EnvT m))
 
